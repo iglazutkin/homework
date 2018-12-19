@@ -1,6 +1,3 @@
-#ifndef DOUBLEARRAY_DOUBLEARRAY_H
-#define DOUBLEARRAY_DOUBLEARRAY_H
-
 struct ArrD {
     explicit ArrD(unsigned int Size);
 
@@ -24,8 +21,6 @@ private:
 
 void Sorting(double **arr, int left, int right);
 
-#endif //DOUBLEARRAY_DOUBLEARRAY_H
-#include "DoubleArray.h"
 #include <iostream>
 
 void Sorting(double *arr, int left, int right) {
