@@ -1,7 +1,34 @@
+#ifndef DOUBLEARRAY_DOUBLEARRAY_H
+#define DOUBLEARRAY_DOUBLEARRAY_H
+
+struct ArrD {
+    explicit ArrD(unsigned int Size);
+
+    ArrD(unsigned int Size, double defaultValue);
+
+    ~ArrD();
+
+    double &operator[](unsigned int index);
+
+    void print();
+
+    unsigned int Size();
+
+    void sort();
+
+private:
+    unsigned int Size;
+    double *data;
+
+};
+
+void Sorting(double **arr, int left, int right);
+
+#endif //DOUBLEARRAY_DOUBLEARRAY_H
 #include "DoubleArray.h"
 #include <iostream>
 
-void quickSort(double *arr, int left, int right) {
+void Sorting(double *arr, int left, int right) {
     int i = left, j = right;
     double tmp;
     double pivot = arr[(left + right) / 2];
@@ -19,41 +46,41 @@ void quickSort(double *arr, int left, int right) {
         }
     };
     if (left < j)
-        quickSort(arr, left, j);
+        Sorting(arr, left, j);
     if (i < right)
-        quickSort(arr, i, right);
+        Sorting(arr, i, right);
 }
 
-DoubleArray::DoubleArray(unsigned int sizeOfArray) : sizeOfArray(sizeOfArray) {
-    data = new double[sizeOfArray];
+ArrD::ArrD(unsigned int Size) : Size(Size) {
+    data = new double[Size];
 }
 
-DoubleArray::DoubleArray(unsigned int sizeOfArray, double defaultValue) : sizeOfArray(sizeOfArray) {
-    data = new double[sizeOfArray];
-    for (auto i = 0; i < sizeOfArray; ++i) {
+ArrD::ArrD(unsigned int Size, double defaultValue) : Size(Size) {
+    data = new double[Size];
+    for (auto i = 0; i < Size; ++i) {
         data[i] = defaultValue;
     }
 }
 
-DoubleArray::~DoubleArray() {
+ArrD::~ArrD() {
     delete[] data;
 }
 
-double &DoubleArray::operator[](unsigned int index) {
+double &ArrD::operator[](unsigned int index) {
     return data[index];
 }
 
-void DoubleArray::print() {
+void ArrD::print() {
     std::cout << std::endl;
-    for (auto i = 0; i < sizeOfArray; ++i) {
+    for (auto i = 0; i < Size; ++i) {
         std::cout << data[i] << " ";
     }
 }
 
-unsigned int DoubleArray::size() {
-    return sizeOfArray;
+unsigned int ArrD::Size() {
+    return Size;
 }
 
-void DoubleArray::sort() {
-    quickSort(data, 0, int(sizeOfArray - 1));
+void ArrD::sort() {
+    Sorting(data, 0, int(Size - 1));
 }
